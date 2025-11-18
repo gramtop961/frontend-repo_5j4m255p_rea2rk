@@ -3,6 +3,7 @@ import Navbar from './components/Navbar'
 import MenuGrid from './components/MenuGrid'
 import Services from './components/Services'
 import Cart from './components/Cart'
+import { formatINR } from './utils/currency'
 
 const baseUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8000'
 
@@ -35,7 +36,7 @@ function App() {
       })
       if (!res.ok) throw new Error('Checkout failed')
       const order = await res.json()
-      alert(`Order placed! Total: $${order.total_amount}`)
+      alert(`Order placed! Total: ${formatINR(order.total_amount)}`)
       setCart([])
       setCartOpen(false)
     } catch (e) {

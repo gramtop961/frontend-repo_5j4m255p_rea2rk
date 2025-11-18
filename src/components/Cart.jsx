@@ -1,4 +1,5 @@
 import { useMemo } from 'react'
+import { formatINR } from '../utils/currency'
 
 export default function Cart({ items, onClose, onCheckout }) {
   const total = useMemo(() => items.reduce((sum, it) => sum + it.price * it.qty, 0), [items])
@@ -23,7 +24,7 @@ export default function Cart({ items, onClose, onCheckout }) {
                 <p className="text-sm text-slate-500">Qty: {it.qty}</p>
               </div>
               <div className="text-right">
-                <p className="font-medium">${(it.price * it.qty).toFixed(2)}</p>
+                <p className="font-medium">{formatINR(it.price * it.qty)}</p>
               </div>
             </div>
           ))}
@@ -32,7 +33,7 @@ export default function Cart({ items, onClose, onCheckout }) {
         <div className="border-t pt-4">
           <div className="flex items-center justify-between mb-3">
             <span className="text-slate-600">Subtotal</span>
-            <span className="font-semibold">${total.toFixed(2)}</span>
+            <span className="font-semibold">{formatINR(total)}</span>
           </div>
           <button onClick={onCheckout} className="w-full py-3 rounded-xl bg-amber-600 text-white font-semibold hover:bg-amber-700">Checkout</button>
         </div>

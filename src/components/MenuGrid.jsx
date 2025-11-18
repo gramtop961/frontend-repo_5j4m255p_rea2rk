@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { formatINR } from '../utils/currency'
 
 const baseUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8000'
 
@@ -51,7 +52,7 @@ export default function MenuGrid({ onAdd }) {
                   <p className="text-slate-500 text-sm line-clamp-2">{item.description}</p>
                 </div>
                 <div className="text-right">
-                  <p className="font-bold text-amber-700">${Number(item.price).toFixed(2)}</p>
+                  <p className="font-bold text-amber-700">{formatINR(item.price)}</p>
                   <button onClick={() => onAdd(item)} className="mt-2 text-sm px-3 py-1.5 rounded-lg bg-amber-600 text-white hover:bg-amber-700">Add</button>
                 </div>
               </div>

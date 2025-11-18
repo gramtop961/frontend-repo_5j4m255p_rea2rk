@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Briefcase, Users, Calendar, Truck } from 'lucide-react'
+import { formatINR } from '../utils/currency'
 
 const ICONS = { Briefcase, Users, Calendar, Truck }
 const baseUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8000'
@@ -34,7 +35,7 @@ export default function Services() {
               <h3 className="font-semibold text-slate-900">{svc.title}</h3>
               <p className="text-slate-500 text-sm">{svc.summary}</p>
               {svc.price_from != null && (
-                <p className="mt-2 text-sm text-slate-600">From <span className="font-semibold">${Number(svc.price_from).toFixed(2)}</span></p>
+                <p className="mt-2 text-sm text-slate-600">From <span className="font-semibold">{formatINR(svc.price_from)}</span></p>
               )}
             </div>
           )
